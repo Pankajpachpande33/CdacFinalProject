@@ -1,0 +1,32 @@
+.topmargin{
+    margin-top: 100px;
+}
+.margin{
+    margin-top: 50px;
+}
+.vl {
+    border-left: 4px solid black;
+    height: 100%;
+  }
+  .font-size{
+    font-size: x-large;
+  }
+  .margin2{
+    margin-top: 10px;
+} 
+.leftmargin{
+    margin-left: 50px;
+}
+/* .carousel1{
+    height: 600px;
+    width: 700px;
+} */
+.height-width{
+  height: 700px;
+    width: 700px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+.margin-top{
+  margin-top: 100px;
+}
