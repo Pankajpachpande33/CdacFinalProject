@@ -1,0 +1,25 @@
+.text-size{
+    font-size: larger;
+    
+}
+.margin-left{
+    margin-left: 5px;
+}
+.text-color{
+    color: white;
+}
+.img-size{
+    height: 0.5px;
+    width: 0.5px;
+}
+.logo-img{
+    height: 300px;
+    width: 280px;
+}
+.logo-size{
+    height: 20px;
+    width: 20px;
+}
+.margin-top1{
+    margin-top: 150px;
+}
