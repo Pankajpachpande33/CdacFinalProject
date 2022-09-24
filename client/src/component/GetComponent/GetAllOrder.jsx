@@ -1,0 +1,90 @@
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { deleteEntity } from "../../action/commonAction";
+import { getOrder } from "../../action/orderAction";
+
+
+import { AppContext } from "../../context/AppContext";
+// import Loader from "../loader/Loader";
+
+const GetAllOrder = () => {
+  const { entity, loading, dispatch } = useContext(AppContext);
+
+  useEffect(() => {
+    loadOrder();
+  }, []);
+
+  const loadOrder = async () => {
+    await getOrder('order',dispatch)
+  };
+
+  const [formData, setFormData] = useState({ categoryName: '', status: '' });
+  const [isUpdate, setIsUpdate] = useState(false);
+
+  
+  const navigate = useNavigate();
+
+const editItem = (id) => {
+    const order= entity.order.find(f => f.orderId === id)
+    setFormData(order);
+    setIsUpdate(true);
+	navigate("/editOrder", {state:order});
+    //console.log(entity.category,id,category)
+   
+}
+console.log(FormData);
+const deleteItem = async (id) => {
+  const result = await deleteEntity(`order/${id}`);
+  if (result) {
+      console.log(result)
+      loadOrder();
+  }
+}
+
+  return (
+    <div>
+      {loading && 'loading...'}
+      <div className="card subCat22">
+      <table className="table container topmt">
+        <thead>
+          <tr>
+            <th> Order Date</th>
+            <th>Order Quantity</th>
+            <th>Product Name</th>
+            <th>Edit/Delete</th>
+            
+            {/* <td>User Name</td> */}
+          </tr>
+        </thead>
+        <tbody>
+          {entity.order.length > 0 &&
+            entity.order.map((item, index) => (
+              <tr key={item.orderId}>
+                <td>{item.orderDate}</td>
+                <td>{item.orderQuantity}</td>
+                <td>{item.productMaster.productName}</td>
+                {/* <td>{item.userMaster.userName}</td> */}
+                <td>
+                  <button 
+                    className="btn btn-primary mr-2"
+                    onClick={() => editItem(item._id)}
+                  >
+                    Buy
+                  </button>
+                  <button
+                    className="btn btn-danger ml-2"
+                    // onClick={() => deleteItem(item._id)}
+                  >
+                    Back
+                  </button>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+      </div>
+    </div>
+  );
+};
+
+export default GetAllOrder;
