@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Header.css'
 import { Link } from "react-router-dom";
 import './bootstrap.min.css'
+import { AppContext } from '../../context/AppContext';
 
 const SellerHeader = () => {
+  const {  dispatch , currentUser} = useContext(AppContext);
   return (
     <div className="w-auto p-3">
         <nav class="navbar navbar-expand-md navbar-light bg-dark fixed-top ">
@@ -46,15 +48,15 @@ const SellerHeader = () => {
                 
                 <div class="dropdown-menu tt2">
                 <div class="dropdown-item marginHead">
-                  <h4>Hi Seller, Tejas Khairnar</h4>
-                  <p>User@gmail.com</p><hr/>
+                  <h5>Hi , {currentUser}</h5>
+                  
                   </div>  
                 <div class="dropdown-item">
-                  <Link className="headDetails" to="/">User</Link>
+                  <Link className="headDetails" to="/login">User</Link>
                   </div>  
-                  <div class="dropdown-item">
+                  {/* <div class="dropdown-item">
                   <Link className="headDetails" to="/login">Seller Login</Link>
-                  </div>
+                  </div> */}
                   <div class="dropdown-item">
                   <Link className="headDetails" to="/sellerRegistration">Seller Registration</Link>
                   </div>

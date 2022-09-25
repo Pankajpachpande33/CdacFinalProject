@@ -14,7 +14,7 @@ const INITIAL_STATE = {
         
     },
     currentProduct:null,
-
+    currentUser:null,
     error: null,
     success: null,
     loading: false,
@@ -38,7 +38,8 @@ const ApplicationContext = ({ children }) => {
                     success: state.success,
                     loading: state.loading,
                     dispatch: dispatch,
-                    currentProduct:state. currentProduct
+                    currentProduct:state. currentProduct,
+                    currentUser:state.currentUser
                 }
             }
         >

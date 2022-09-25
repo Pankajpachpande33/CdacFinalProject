@@ -16,10 +16,10 @@ function BuyerRightSideBar() {
           <div class="margin2"><Link className="color1" to="/shop">Shop</Link></div>
           <div class="margin2"><Link className="color1" to="/ourStory">Our Story</Link></div>
           <div class="margin2"><Link className="color1" to="/contact">Contact</Link></div>
-          <div class="margin2"><Link className="color1" to="/myOrders">My Order</Link></div>
-          <div class="margin2"><Link className="color1" to="/displayAllOrder">Edit Order</Link></div>
-          <div class="margin2"><Link className="color1" to="/displayAllUser">Edit User Details</Link></div>
-          <div class="margin2"><Link className="color1" to="/displayAllAddress">Edit User Address</Link></div>
+          <div class="margin2"><Link className="color1" to="/displayAllOrder">My Order</Link></div>
+          {/* <div class="margin2"><Link className="color1" to="/displayAllOrder">Edit Order</Link></div> */}
+          <div class="margin2"><Link className="color1" to="/displayAllUser">User Details</Link></div>
+          {/* <div class="margin2"><Link className="color1" to="/displayAllAddress">Edit User Address</Link></div> */}
           <div class="margin2"></div>
           <div class="margin2"></div>
         </div>

@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
 import './bootstrap.min.css'
 import './Header.css'
 
 
 function Header(){
+  const {  dispatch , currentUser} = useContext(AppContext);
+  
+
     return(
         <div className="w-auto p-3">
         <nav class="navbar navbar-expand-md navbar-light bg-dark fixed-top ">
@@ -46,8 +51,8 @@ function Header(){
                 </button>
                 <div class="dropdown-menu tt2">
                 <div class="dropdown-item marginHead">
-                  <h4>Hi, Harsha Gupta</h4>
-                  <p>User@gmail.com</p><hr/>
+                  <h5>Hi , {currentUser} </h5>
+                  
                   </div>  
                 <div class="dropdown-item">
                   <Link className="headDetails" to="/sellerLogin">Admin(Seller)</Link>

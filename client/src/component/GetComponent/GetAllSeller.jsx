@@ -42,8 +42,9 @@ const deleteItem = async (id) => {
 
   return (
     <div>
+      <div className="card subCat22">
       {loading && 'loading...'}
-      <table className="table container topmt">
+      <table className="table container-fluid topmt">
         <thead>
           <tr>
             <th> Seller First Name</th>
@@ -71,7 +72,7 @@ const deleteItem = async (id) => {
                     Edit
                   </button>
                   <button
-                    className="btn btn-danger ml-2"
+                    className="btn btn-danger ml-2 "
                      onClick={() => deleteItem(item.sellerId)}
                   >
                     Delete
@@ -81,6 +82,7 @@ const deleteItem = async (id) => {
             ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

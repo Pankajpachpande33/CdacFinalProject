@@ -51,8 +51,7 @@ export const EditSubCategory = () => {
                   class="form-control"
                   name="subCategoryName"
                   id="subCategoryName"
-                 // value={location.state.categoryName}
-                  placeholder="Sub-Category Name"
+                //  value={location.state.subCategoryName}
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
                    required
                 />

@@ -39,8 +39,8 @@ const AppReducer = (state, action) => {
         loading: false,
         entity: {
           ...state.entity,
-         product: action.payload,
-         // newProduct:action.payload
+          product: action.payload,
+          // newProduct:action.payload
         },
       };
     case actionTypes.LOAD_ORDER_SUCCESS:
@@ -82,22 +82,28 @@ const AppReducer = (state, action) => {
           ...state.entity,
           address: action.payload,
         },
-        
       };
-      case actionTypes.LOAD_SINGLE_SUCCESS:
-     
+    case actionTypes.LOAD_SINGLE_SUCCESS:
       return {
         ...state,
         singleproduct: action.payload,
       };
-      case actionTypes.LOAD_SINGLE_PRODUCT_SUCCESS:
+    case actionTypes.LOAD_SINGLE_PRODUCT_SUCCESS:
       console.log(action);
       return {
         // console.log(action);
         ...state,
         loading: false,
-        currentProduct: action.payload
-          };
+        currentProduct: action.payload,
+      };
+    case actionTypes.LOAD_CURRENTUSER_SUCCESS:
+      console.log(action);
+      return {
+        // console.log(action);
+        ...state,
+        loading: false,
+        currentUser: action.payload,
+      };
     default:
       return state;
   }

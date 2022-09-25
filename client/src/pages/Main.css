@@ -1,19 +1,19 @@
-.tm1{
-    margin-top: 100px;
+.tm1 {
+  margin-top: 100px;
 }
-.margin{
-    margin-top: 50px;
+.margin {
+  margin-top: 50px;
 }
 .vl {
-    border-left: 4px solid black;
-    height: 100%;
-  }
-  .font-size{
-    font-size: x-large;
-  }
-  .margin2{
-    margin-top: 10px;
-} 
+  border-left: 4px solid black;
+  height: 100%;
+}
+.font-size {
+  font-size: x-large;
+}
+.margin2 {
+  margin-top: 10px;
+}
 /* .leftmargin{
     margin-left: 50px;
 } */
@@ -21,13 +21,13 @@
     height: 600px;
     width: 700px;
 } */
-.height-width{
+.height-width {
   height: 700px;
-    width: 500px;
-    margin-top: 50px;
-    margin-bottom: 30px;
+  width: 500px;
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
-.margin-top{
+.margin-top {
   margin-top: 100px;
   height: 400px;
   width: 400px;

@@ -16,10 +16,10 @@ function SellerRightSideBar() {
           <div class="margin2"><Link className="color1" to="/sellerContact">Contact</Link></div>
           <div class="margin2"><Link className="color1" to="/addProduct">Add Product</Link></div>
           <div class="margin2"><Link className="color1" to="/addCategory">Add Category</Link></div>
-          <div class="margin2"><Link className="color1" to="/displayAllSubCategory">Edit Sub-Category</Link></div>
-          <div class="margin2"><Link className="color1" to="/displayAllCategory">Edit Category</Link></div>
-          <div class="margin2"><Link className="color1" to="/displayAllSeller">Edit Seller</Link></div>
-          <div class="margin2"><Link className="color1" to="/displayAllProducts">Edit Product</Link></div>
+          <div class="margin2"><Link className="color1" to="/displayAllSubCategory">All Sub-Category</Link></div>
+          <div class="margin2"><Link className="color1" to="/displayAllCategory">All Category</Link></div>
+          <div class="margin2"><Link className="color1" to="/displayAllSeller">Seller</Link></div>
+          <div class="margin2"><Link className="color1" to="/displayAllProducts">All Product</Link></div>
           <div class="margin2"></div>
         </ul>
         </div>

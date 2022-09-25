@@ -8,7 +8,7 @@ import { AppContext } from "../../context/AppContext";
 // import Loader from "../loader/Loader";
 
 const GetAllOrder = () => {
-  const { entity, loading, dispatch } = useContext(AppContext);
+  const { entity, loading, dispatch , currentUser} = useContext(AppContext);
 
   useEffect(() => {
     loadOrder();
@@ -34,6 +34,7 @@ const editItem = (id) => {
 }
 console.log(FormData);
 const deleteItem = async (id) => {
+  console.log(id);
   const result = await deleteEntity(`order/${id}`);
   if (result) {
       console.log(result)
@@ -57,25 +58,20 @@ const deleteItem = async (id) => {
           </tr>
         </thead>
         <tbody>
-          {entity.order.length > 0 &&
-            entity.order.map((item, index) => (
+          {entity.order.length > 0 && 
+            // entity.order.filter(id=>id.user_master_user_id===currentUser).map((item, index) => (
+              entity.order.map((item, index) => (
               <tr key={item.orderId}>
                 <td>{item.orderDate}</td>
                 <td>{item.orderQuantity}</td>
                 <td>{item.productMaster.productName}</td>
                 {/* <td>{item.userMaster.userName}</td> */}
                 <td>
-                  <button 
-                    className="btn btn-primary mr-2"
-                    onClick={() => editItem(item._id)}
-                  >
-                    Buy
-                  </button>
                   <button
                     className="btn btn-danger ml-2"
-                    // onClick={() => deleteItem(item._id)}
+                     onClick={() => deleteItem(item.orderId)}
                   >
-                    Back
+                    Cancel Order
                   </button>
                 </td>
               </tr>

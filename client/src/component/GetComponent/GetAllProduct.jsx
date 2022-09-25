@@ -108,7 +108,7 @@ const GetAllProduct = () => {
     <article class="card shadow-5 card25">
           <img className="imgDiv"
           class="card-img-top"
-          src={`${IMG_URL}/${item.imageUploadPath}`}
+          src={`${IMG_URL}${item.imageUploadPath}`}
           alt="No Image For This Product"
              />
         
@@ -120,7 +120,7 @@ const GetAllProduct = () => {
                 {/* <td>{item.sellerMaster.sellerFirstName}</td> */}
                 {/* <div>{item.productManufacturingDate}</div> */}
                 <div>&nbsp;<b>Price :</b> {item.productPrice} ₹</div><br/>&nbsp;&nbsp;
-                <button onClick={() => editItem(item.productId)} className="btn-primary">Add To Cart</button>
+                <button onClick={() => editItem(item.productId)} class="btn btn-primary mt-4">View Product Details</button>
                 
         </div>           
     </article>

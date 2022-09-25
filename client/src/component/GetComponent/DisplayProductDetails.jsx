@@ -22,23 +22,17 @@ const DisplayProductDetails = () => {
 
   const [prod, setProd] = useState();
   const IMG_URL = process.env.REACT_APP_API_IMG_URL;
-
+  
+  const navigate=useNavigate();
 
    
 
    
 
    const onSubmit = async (e) => {
-    setFormData({orderDate:'2022-09-02',orderQuantity:2, productId:1, userId:1 } )
-    console.log(formData)
     e.preventDefault();
-    //console.log(product);
-   const res = await axios.post('http://127.0.0.1:9999/order', formData)
-   console.log("This is Response "+res);
-   if(res){
-   //navigate("/displayProduct")
-   // alert("\nProduct Name : " +product.productName +"\nSubCategory Name : " +product.subCategoryId +"\nSeller id : " +product.sellerId +"\nManufacturing date : " +product.productManufacturingDate +"\nPrice : " +product.productPrice +" "+"\nSuccessfully Your Product");
-   }
+    navigate("/myOrders", {state: {productName:currentProduct.productName,productId:currentProduct.productId}} )
+    
   };
    
   useEffect(() => {
@@ -164,7 +158,7 @@ const DisplayProductDetails = () => {
           <div className="container background2">
             <div className="row">
               <div className="col-4">
-                <img className="singleProd" src={`${IMG_URL}/${currentProduct?.imageUploadPath}`} alt="image not found" />
+                <img className="singleProd" src={`${IMG_URL}${currentProduct?.imageUploadPath}`} alt="image not found" />
               </div>
               <div className="col-8">
               {/* {entity.product.length > 0 &&

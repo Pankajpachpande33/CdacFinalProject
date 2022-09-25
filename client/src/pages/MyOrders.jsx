@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './registration.css'
 import axios from 'axios';
 import { AlertContainer, alert } from 'react-custom-alert';
@@ -13,6 +13,10 @@ function MyOrders() {
 
   const { entity, loading, dispatch ,pageId} = useContext(AppContext);
 
+  const location=useLocation();
+
+  const navigate=useNavigate();
+
   useEffect(() => {
     loadProduct();
   }, []);
@@ -22,13 +26,20 @@ function MyOrders() {
   };
 
   const handleChange = (fieldName, fieldValue) => {
-    setOrder((prev) => ({ ...prev, [fieldName]: fieldValue }));
+    setOrder((prev) => ({ ...prev, [fieldName]: fieldValue, productId: location.state.productId }));
   };
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(order);
-    // alert(user.userFirstName +" " +user.userLastName +"\nsuccessfully Register");
-   const res = await axios.post('http://127.0.0.1:9999/order', order)
+    try{
+       const res = await axios.post('http://127.0.0.1:9999/order', order)
+       if(res.status===200){
+       alert("Your Order is Placed !!!")
+       navigate("/");
+       }
+   }catch(error){
+     alert("Something went wrong.. try again !")
+   }
   };
 
   return (
@@ -39,6 +50,7 @@ function MyOrders() {
           <br />
           <h1 className="t1">Order Form</h1>
           <hr />
+          <h2 className="text-center font-weight-bold">{location.state.productName}</h2>
           <br />
           <form  class="was-validated">
             <div class="form-group">
@@ -49,6 +61,7 @@ function MyOrders() {
                 id="orderDate"
                 placeholder="Order date"
                 name="orderDate"
+                //  value={new Date().toJSON().slice(0, 10)}
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
                 required
               />
@@ -56,7 +69,7 @@ function MyOrders() {
             <div class="form-group">
               <label for="orderQuantity">Order Quantity</label>
               <input
-                type="tel"
+                type="number"
                 class="form-control"
                 id="orderQuantity"
                 placeholder="Order Quantity"
@@ -65,7 +78,7 @@ function MyOrders() {
                 required
               />
             </div>
-            <div class="form-group">
+            {/* <div class="form-group">
                 <label for="productId">Choose Product Name : </label>
 
                 <select name="productId"
@@ -77,26 +90,30 @@ function MyOrders() {
                     <option value={item.productId}>{item.productName}</option>
                   ))}
                 </select>
-            </div>
-            {/* <div class="form-group">
-              <label for="productId">product Name : </label>
+            </div> */}
+            <div class="form-group">
+              {/* <label for="productId">product Name : </label> */}
               <input
-                type="tel"
+                type="hidden"
                 class="form-control"
                 id="productId"
-                placeholder="product Id"
+                placeholder={location.state.productName}
                 name="productId"
+                value={location.state.productId}
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
                 required
               />
-            </div> */}
+              {/* <div>
+                {location.state.productName}
+              </div> */}
+            </div>
             <div class="form-group">
               <label for="userId">user Id</label>
               <input
                 type="tel"
                 class="form-control"
                 id="userId"
-                placeholder="Enter email"
+                placeholder="Enter User Id"
                 name="userId"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
                 required
