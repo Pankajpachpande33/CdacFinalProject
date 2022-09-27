@@ -1,4 +1,4 @@
-package cdac.ecom.seller.service;
+package cdac.ecom.seller.repository.service;
 
 import cdac.ecom.seller.model.LoginVM;
 import cdac.ecom.seller.repository.UserRepo;

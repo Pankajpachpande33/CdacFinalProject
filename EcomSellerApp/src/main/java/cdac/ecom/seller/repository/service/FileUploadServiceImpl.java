@@ -1,4 +1,4 @@
-package cdac.ecom.seller.service;
+package cdac.ecom.seller.repository.service;
 
 
 import org.springframework.beans.factory.annotation.Value;

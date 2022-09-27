@@ -2,7 +2,7 @@ package cdac.ecom.seller.controller;
 
 import cdac.ecom.seller.entity.UserMaster;
 import cdac.ecom.seller.model.UserVM;
-import cdac.ecom.seller.service.UserService;
+import cdac.ecom.seller.repository.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

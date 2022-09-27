@@ -1,6 +1,5 @@
-package cdac.ecom.seller.service;
+package cdac.ecom.seller.repository.service;
 
-import cdac.ecom.seller.entity.CategoryMaster;
 import cdac.ecom.seller.entity.ProductMaster;
 import cdac.ecom.seller.entity.SellerMaster;
 import cdac.ecom.seller.entity.SubCategoryMaster;
@@ -11,11 +10,7 @@ import cdac.ecom.seller.repository.SellerRepo;
 import cdac.ecom.seller.repository.SubCategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Optional;
 

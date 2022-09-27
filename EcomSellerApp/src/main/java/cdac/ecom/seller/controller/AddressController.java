@@ -2,7 +2,7 @@ package cdac.ecom.seller.controller;
 
 import cdac.ecom.seller.entity.AddressMaster;
 import cdac.ecom.seller.model.AddressVM;
-import cdac.ecom.seller.service.AddressService;
+import cdac.ecom.seller.repository.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

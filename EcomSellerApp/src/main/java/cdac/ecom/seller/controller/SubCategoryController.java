@@ -2,7 +2,7 @@ package cdac.ecom.seller.controller;
 
 import cdac.ecom.seller.entity.SubCategoryMaster;
 import cdac.ecom.seller.model.SubCategoryVM;
-import cdac.ecom.seller.service.SubCategoryService;
+import cdac.ecom.seller.repository.service.SubCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

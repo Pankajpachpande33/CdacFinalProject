@@ -15,6 +15,4 @@ public class ResourceConfigs implements WebMvcConfigurer {
         registry.addResourceHandler("/img/**")
                 .addResourceLocations("file:///D:/imgUpload"+ File.separator);
     }
-
-
 }
