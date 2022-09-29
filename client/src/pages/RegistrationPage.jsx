@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
-import './registration.css'
-import axios from 'axios';
+import { Link } from "react-router-dom";
+import "./registration.css";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 
 const RegistrationPage = () => {
   const [user, setUser] = useState({});
 
   const navigation = useNavigate();
-
-  
 
   const handleChange = (fieldName, fieldValue) => {
     setUser((prev) => ({ ...prev, [fieldName]: fieldValue }));
@@ -18,14 +15,16 @@ const RegistrationPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
-   const res = await axios.post('http://127.0.0.1:9999/user', user)
-   
-   if(res){
-    
-    navigation("/login")
-   }
+    const res = await axios.post("http://127.0.0.1:8080/user", user);
+
+    if (res.data === 200) {
+      navigation("/login");
+    }
+    if (res.data === 1) {
+      alert("both password shold match");
+    }
   };
- 
+
   return (
     <div>
       <div className="w-auto p-3 gradient">
@@ -34,7 +33,7 @@ const RegistrationPage = () => {
           <h1 className="t1">Create Account</h1>
           <hr />
           <br />
-          <form  class="was-validated">
+          <form class="was-validated">
             <div class="form-group">
               <label for="userFirstName">First Name</label>
               <input
@@ -118,7 +117,10 @@ const RegistrationPage = () => {
               Remember me
             </div>
             <br />
-            <button onClick={onSubmit} class="btn btn-warning">Continue</button>&nbsp;&nbsp;
+            <button onClick={onSubmit} class="btn btn-warning">
+              Continue
+            </button>
+            &nbsp;&nbsp;
             <button class="btn btn-warning" type="reset" value="Reset">
               Reset
             </button>

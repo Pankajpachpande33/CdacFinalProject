@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom'
-import './registration.css'
-import axios from 'axios';
+import { Link, useNavigate } from "react-router-dom";
+import "./registration.css";
+import axios from "axios";
 
 const SellerRegistration = () => {
   const [user, setUser] = useState({});
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (fieldName, fieldValue) => {
     setUser((prev) => ({ ...prev, [fieldName]: fieldValue }));
@@ -14,9 +14,14 @@ const SellerRegistration = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
-    navigate("/sellerLogin")
-    alert(user.sellerFirstName +" " +user.sellerLastName +"\nsuccessfully Register");
-   const res = await axios.post('http://127.0.0.1:9999/seller', user)
+    navigate("/sellerLogin");
+    alert(
+      user.sellerFirstName +
+        " " +
+        user.sellerLastName +
+        "\nsuccessfully Register"
+    );
+    const res = await axios.post("http://127.0.0.1:8080/seller", user);
   };
 
   return (
@@ -27,7 +32,7 @@ const SellerRegistration = () => {
           <h1 className="t1">Create Seller Account</h1>
           <hr />
           <br />
-          <form  class="was-validated">
+          <form class="was-validated">
             <div class="form-group">
               <label for="sellerFirstName"> First Name</label>
               <input
@@ -111,7 +116,10 @@ const SellerRegistration = () => {
               Remember me
             </div>
             <br />
-            <button onClick={onSubmit} class="btn btn-warning">Continue</button>&nbsp;&nbsp;
+            <button onClick={onSubmit} class="btn btn-warning">
+              Continue
+            </button>
+            &nbsp;&nbsp;
             <button class="btn btn-warning" type="reset" value="Reset">
               Reset
             </button>

@@ -1,41 +1,42 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from 'react-router-dom';
-
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const EditSubCategory = () => {
+  const [subCategory, setSubCategory] = useState({});
+  // const [category, setCategory] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const [subCategory, setSubCategory] = useState({});
-    // const [category, setCategory] = useState({});
-    const location = useLocation()
-    const navigate = useNavigate()
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
+    console.log(subCategory);
 
-        console.log(subCategory);
-       
-        const res = await axios.put(`http://127.0.0.1:9999/subCategory/${location.state.subCategoryId}`, subCategory);
-        // const res1 = await axios.put(`http://127.0.0.1:9999/Category/${location.state.categoryId}`, category);
-        navigate("/displaySubCategory")
-      };
+    const res = await axios.put(
+      `http://127.0.0.1:8080/subCategory/${location.state.subCategoryId}`,
+      subCategory
+    );
+    // const res1 = await axios.put(`http://127.0.0.1:9999/Category/${location.state.categoryId}`, category);
+    navigate("/displaySubCategory");
+  };
 
-      const handleChange = (fieldName, fieldValue) => {
-        setSubCategory((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
-        
-      };
+  const handleChange = (fieldName, fieldValue) => {
+    setSubCategory((prev) => ({
+      ...prev,
+      [fieldName]: fieldValue,
+      status: true,
+    }));
+  };
 
-      useEffect(() => {
-        setSubCategory(location.state);
-    },[location.state])
-    
-    console.log(location.state)
-    
- 
-    return (
+  useEffect(() => {
+    setSubCategory(location.state);
+  }, [location.state]);
 
-      <div>
+  console.log(location.state);
+
+  return (
+    <div>
       <div className="w-auto p-3 gradient">
         <div class="card c2 container margin-top">
           <div>
@@ -51,9 +52,9 @@ export const EditSubCategory = () => {
                   class="form-control"
                   name="subCategoryName"
                   id="subCategoryName"
-                //  value={location.state.subCategoryName}
+                  //  value={location.state.subCategoryName}
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <br />
@@ -66,10 +67,8 @@ export const EditSubCategory = () => {
               </button>
             </form>
           </div>
-          
-            </div>  
+        </div>
+      </div>
     </div>
-    </div>
-  )
-}
-
+  );
+};

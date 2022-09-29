@@ -1,39 +1,36 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from 'react-router-dom';
-
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const EditSeller = () => {
+  const [seller, setSeller] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const [seller, setSeller] = useState({});
-    const location = useLocation()
-    const navigate = useNavigate()
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
+    console.log(seller);
 
-        console.log(seller);
-       
-        const res = await axios.put(`http://127.0.0.1:9999/seller/${location.state.sellerId}`, seller);
-        navigate("/displaySeller")
-      };
+    const res = await axios.put(
+      `http://127.0.0.1:8080/seller/${location.state.sellerId}`,
+      seller
+    );
+    navigate("/displaySeller");
+  };
 
-      const handleChange = (fieldName, fieldValue) => {
-        setSeller((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
-      };
+  const handleChange = (fieldName, fieldValue) => {
+    setSeller((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
+  };
 
-      useEffect(() => {
-        setSeller(location.state);
-        
-    },[location.state])
-    
-    console.log(location.state)
-    
- 
-    return (
+  useEffect(() => {
+    setSeller(location.state);
+  }, [location.state]);
 
-      <div>
+  console.log(location.state);
+
+  return (
+    <div>
       <div className="w-auto p-3 gradient">
         <div class="card c2 container margin-top">
           <div>
@@ -49,10 +46,10 @@ export const EditSeller = () => {
                   class="form-control"
                   name="sellerFirstName"
                   id="sellerFirstName"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="First Name"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <br />
@@ -63,10 +60,10 @@ export const EditSeller = () => {
                   class="form-control"
                   name="sellerLastName"
                   id="sellerLastName"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Last Name"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
@@ -76,10 +73,10 @@ export const EditSeller = () => {
                   class="form-control"
                   name="sellerMobileNumber"
                   id="sellerMobileNumber"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Mobile Number"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
@@ -89,10 +86,10 @@ export const EditSeller = () => {
                   class="form-control"
                   name="sellerEmail"
                   id="sellerEmail"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Email Id"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
@@ -102,10 +99,10 @@ export const EditSeller = () => {
                   class="form-control"
                   name="sellerPassword"
                   id="sellerPassword"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="password"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
@@ -115,10 +112,10 @@ export const EditSeller = () => {
                   class="form-control"
                   name="confirmPass"
                   id="confirmPass"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Confirm Password"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <button onClick={onSubmit} class="btn btn-warning">
@@ -130,10 +127,8 @@ export const EditSeller = () => {
               </button>
             </form>
           </div>
-          
-            </div>  
+        </div>
+      </div>
     </div>
-    </div>
-  )
-}
-
+  );
+};

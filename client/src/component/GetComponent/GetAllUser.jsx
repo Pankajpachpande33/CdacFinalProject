@@ -4,15 +4,14 @@ import { deleteEntity } from "../../action/commonAction";
 import { getSeller } from "../../action/sellerAction";
 import { getUser } from "../../action/userAction";
 
-
 import { AppContext } from "../../context/AppContext";
 // import Loader from "../loader/Loader";
 
 const GetAllUser = () => {
   const { entity, loading, dispatch } = useContext(AppContext);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({  });
+  const [formData, setFormData] = useState({});
   const [isUpdate, setIsUpdate] = useState(false);
 
   useEffect(() => {
@@ -20,31 +19,33 @@ const GetAllUser = () => {
   }, []);
 
   const loadUser = async () => {
-    await getUser('user',dispatch)
+    await getUser("user", dispatch);
   };
   const editItem = (id) => {
     console.log(id);
-    setFormData(entity.user.find(f => f.userId === id));
+    setFormData(entity.user.find((f) => f.userId === id));
     setIsUpdate(true);
-    navigate("/editUser")
+    navigate("/editUser");
     console.log(formData);
-}
-const deleteItem = async (id) => {
-  const result = await deleteEntity(`user/${id}`);
-  if (result) {
-      console.log(result)
+  };
+  const deleteItem = async (id) => {
+    const result = await deleteEntity(`user/${id}`);
+    if (result) {
+      console.log(result);
       loadUser();
-  }
-}
+    }
+  };
+
+  const buyerId = localStorage.getItem("userId");
 
   return (
     <div>
-      {loading && 'loading...'}
+      {loading && "loading..."}
       <table className="table container topmt">
         <thead>
           <tr>
             <th> User First Name</th>
-            <th>User Last Name</th>           
+            <th>User Last Name</th>
             <th>User Email </th>
             <th>User Mobile Number</th>
             <th>Edit/Delete</th>
@@ -52,28 +53,30 @@ const deleteItem = async (id) => {
         </thead>
         <tbody>
           {entity.user.length > 0 &&
-            entity.user.map((item, index) => (
-              <tr key={item.userId}>
-                <td>{item.userFirstName}</td>
-                <td>{item.userLastName}</td>
-                <td>{item.userEmail}</td>
-                <td>{item.userMobile}</td>
-                <td>
-                  <button
-                    className="btn btn-primary mr-2"
-                     onClick={() => editItem(item.userId)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="btn btn-danger ml-2"
-                     onClick={() => deleteItem(item.userId)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
+            entity.user
+              .filter((id) => id.userId == buyerId)
+              .map((item, index) => (
+                <tr key={item.userId}>
+                  <td>{item.userFirstName}</td>
+                  <td>{item.userLastName}</td>
+                  <td>{item.userEmail}</td>
+                  <td>{item.userMobile}</td>
+                  <td>
+                    <button
+                      className="btn btn-primary mr-2"
+                      onClick={() => editItem(item.userId)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-danger ml-2"
+                      onClick={() => deleteItem(item.userId)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </table>
     </div>

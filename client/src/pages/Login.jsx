@@ -7,7 +7,7 @@ import { AppContext } from "../context/AppContext";
 const Login = () => {
   const [user, setUser] = useState({});
   const { dispatch, currentUser } = useContext(AppContext);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const handleChange = (fieldName, fieldValue) => {
     setUser((prev) => ({ ...prev, [fieldName]: fieldValue }));
   };
@@ -15,19 +15,24 @@ const Login = () => {
     e.preventDefault();
     console.log(user);
     try {
-      const res = await axios.post('http://127.0.0.1:9999/userLogin', user)
-      if(res.data>0){
-        alert(user.username +"  "+ " Login Successfull !")
+      const res = await axios.post("http://127.0.0.1:8080/userLogin", user);
+      console.log(res);
+
+      if (res.data > 0) {
+        alert(user.username + "  " + " Login Successfull !");
         dispatch({ type: LOAD_CURRENTUSER_SUCCESS, payload: res.data });
-      navigate("/")
-   }
-      
+        localStorage.setItem("userId", res.data);
+        navigate("/");
+      }
+      if (res.data === 0) {
+        alert("UserName or password wrong");
+      }
     } catch (error) {
       alert(" Wrong UserName And Password  ");
       console.log(error);
     }
-   
   };
+
   return (
     <div>
       <div className="container-fluid w-auto p-3 gradient">
@@ -36,7 +41,7 @@ const Login = () => {
           <h1 className="txt34">Sign-in</h1>
           <hr />
           <br />
-          <form  class="was-validated">
+          <form class="was-validated">
             <div class="form-group">
               <label for="username">User Name</label>
               <input
@@ -71,9 +76,12 @@ const Login = () => {
               />{" "}
               Remember me
             </div>
-			     <br />
             <br />
-            <button onClick={onSubmit} class="btn btn-warning">Continue</button>&nbsp;&nbsp;
+            <br />
+            <button onClick={onSubmit} class="btn btn-warning">
+              Continue
+            </button>
+            &nbsp;&nbsp;
             <button class="btn btn-warning" type="reset" value="Reset">
               Reset
             </button>

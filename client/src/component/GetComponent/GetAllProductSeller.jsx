@@ -8,7 +8,7 @@ import axios from "axios";
 import { LOAD_PAGEID_SUCCESS } from "../../constants/ApplicationTypes";
 // import Loader from "../loader/Loader";
 
-const GetAllProduct = () => {
+const GetAllProductSeller = () => {
   const navigate = useNavigate();
 
   const editItem = (id) => {
@@ -38,6 +38,18 @@ const GetAllProduct = () => {
   useEffect(() => {
     loadProduct();
   }, []);
+
+  const currentSellerId = localStorage.getItem("userId");
+  // const sellerproduct=entity.product.filter
+  console.log(currentSellerId);
+  console.log(entity.product);
+  const sellerproduct = entity.product.filter(
+    (f) => f.sellerMaster.sellerId == currentSellerId
+  );
+
+  console.log(
+    entity.product.filter((id) => id.sellerMaster.sellerId == currentSellerId)
+  );
 
   const loadProduct = async () => {
     await getProduct("product", dispatch);
@@ -107,43 +119,45 @@ const GetAllProduct = () => {
 
       <div class="cards12">
         {entity.product.length > 0 &&
-          entity.product.map((item, index) => (
-            <div key={item.productId}>
-              <article class="card shadow-5 card25">
-                <img
-                  className="imgDiv"
-                  class="card-img-top"
-                  src={`${IMG_URL}${item.imageUploadPath}`}
-                  alt="No Image For This Product"
-                />
+          entity.product
+            .filter((id) => id.sellerMaster.sellerId == currentSellerId)
+            .map((item, index) => (
+              <div key={item.productId}>
+                <article class="card shadow-5 card25">
+                  <img
+                    className="imgDiv"
+                    class="card-img-top"
+                    src={`${IMG_URL}${item.imageUploadPath}`}
+                    alt="No Image For This Product"
+                  />
 
-                <div class="content">
-                  <br />
-                  <div>
-                    &nbsp;<b>Product Name :</b> {item.productName}
+                  <div class="content">
+                    <br />
+                    <div>
+                      &nbsp;<b>Product Name :</b> {item.productName}
+                    </div>
+                    {/* <div>&nbsp;<b>Category Name :</b> {item.categoryMaster.categoryName}</div> */}
+                    {/* <div>{item.subCategoryMaster.subCategoryName}</div> */}
+                    {/* <td>{item.sellerMaster.sellerFirstName}</td> */}
+                    {/* <div>{item.productManufacturingDate}</div> */}
+                    <div>
+                      &nbsp;<b>Price :</b> {item.productPrice} ₹
+                    </div>
+                    <br />
+                    &nbsp;&nbsp;
+                    <button
+                      onClick={() => editItem(item.productId)}
+                      class="btn btn-primary mt-4"
+                    >
+                      View Product Details
+                    </button>
                   </div>
-                  {/* <div>&nbsp;<b>Category Name :</b> {item.categoryMaster.categoryName}</div> */}
-                  {/* <div>{item.subCategoryMaster.subCategoryName}</div> */}
-                  {/* <td>{item.sellerMaster.sellerFirstName}</td> */}
-                  {/* <div>{item.productManufacturingDate}</div> */}
-                  <div>
-                    &nbsp;<b>Price :</b> {item.productPrice} ₹
-                  </div>
-                  <br />
-                  &nbsp;&nbsp;
-                  <button
-                    onClick={() => editItem(item.productId)}
-                    class="btn btn-primary mt-4"
-                  >
-                    View Product Details
-                  </button>
-                </div>
-              </article>
-            </div>
-          ))}
+                </article>
+              </div>
+            ))}
       </div>
     </div>
   );
 };
 
-export default GetAllProduct;
+export default GetAllProductSeller;

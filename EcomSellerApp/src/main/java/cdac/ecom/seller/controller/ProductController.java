@@ -3,12 +3,23 @@ package cdac.ecom.seller.controller;
 //import cdac.ecom.seller.entity.ImageMaster;
 import cdac.ecom.seller.entity.ProductMaster;
 import cdac.ecom.seller.model.ProductVM;
-import cdac.ecom.seller.repository.service.FileUploadService;
-import cdac.ecom.seller.repository.service.ProductService;
+import cdac.ecom.seller.repository.ProductRepo;
+import cdac.ecom.seller.service.FileUploadService;
+import cdac.ecom.seller.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController("/product")

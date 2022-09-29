@@ -1,41 +1,36 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from 'react-router-dom';
-
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const EditCategory = () => {
+  const [category, setCategory] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const [category, setCategory] = useState({});
-    const location = useLocation()
-    const navigate = useNavigate()
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
+    console.log(category);
 
-        console.log(category);
-       
-        const res = await axios.put(`http://127.0.0.1:9999/category/${location.state.categoryId}`, category);
-        navigate("/displayCategory")
-      };
+    const res = await axios.put(
+      `http://127.0.0.1:8080/category/${location.state.categoryId}`,
+      category
+    );
+    navigate("/displayCategory");
+  };
 
-      const handleChange = (fieldName, fieldValue) => {
-        setCategory((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
-      };
+  const handleChange = (fieldName, fieldValue) => {
+    setCategory((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
+  };
 
-      useEffect(() => {
-        setCategory(location.state);
-        
-    },[location.state])
-    
-    console.log(location.state)
-    
- 
-    return (
+  useEffect(() => {
+    setCategory(location.state);
+  }, [location.state]);
 
+  console.log(location.state);
 
-    
-      <div>
+  return (
+    <div>
       <div className="w-auto p-3 gradient">
         <div class="card c2 container margin-top">
           <div>
@@ -51,10 +46,10 @@ export const EditCategory = () => {
                   class="form-control"
                   name="categoryName"
                   id="categoryName"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="categoryName"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <br />
@@ -67,10 +62,8 @@ export const EditCategory = () => {
               </button>
             </form>
           </div>
-          
-            </div>  
+        </div>
+      </div>
     </div>
-    </div>
-  )
-}
-
+  );
+};

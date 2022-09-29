@@ -1,35 +1,31 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from 'react-router-dom';
-
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 const EditProduct = () => {
+  const [product, setProduct] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    
-    const [product, setProduct] = useState({});
-    const location = useLocation()
-    const navigate = useNavigate()
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
+    const res = await axios.put(
+      `http://127.0.0.1:8080/product/${location.state.productId}`,
+      product
+    );
+    navigate("/displaySubCategory");
+  };
 
-        const res = await axios.put(`http://127.0.0.1:9999/product/${location.state.productId}`, product);
-        navigate("/displaySubCategory")
-      };
+  const handleChange = (fieldName, fieldValue) => {
+    setproduct((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
+  };
 
-      const handleChange = (fieldName, fieldValue) => {
-        setproduct((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
-        
-      };
+  useEffect(() => {
+    setproduct(location.state);
+  }, [location.state]);
 
-      useEffect(() => {
-        setproduct(location.state);
-    },[location.state])
-    
-    console.log(location.state)
-    
-
+  console.log(location.state);
 
   return (
     <div>
@@ -48,10 +44,10 @@ const EditProduct = () => {
                   class="form-control"
                   name="productName"
                   id="productName"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Product Name"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <br />
@@ -62,10 +58,10 @@ const EditProduct = () => {
                   class="form-control"
                   name="subCategoryId"
                   id="subCategoryId"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Sub-Category Id"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
@@ -75,23 +71,25 @@ const EditProduct = () => {
                   class="form-control"
                   name="sellerId"
                   id="sellerId"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Seller Id"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
-                <label for="productManufacturingDate">Product Manufacturing Date</label>
+                <label for="productManufacturingDate">
+                  Product Manufacturing Date
+                </label>
                 <input
                   type="Date"
                   class="form-control"
                   name="productManufacturingDate"
                   id="productManufacturingDate"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Product Manufacturing Date"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
@@ -101,16 +99,18 @@ const EditProduct = () => {
                   class="form-control"
                   name="productPrice"
                   id="productPrice"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Product Price"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
-              <div onChange={(e) => handleChange(e.target.id, e.target.value)}>
-          <FileUpload func={pulldata}/>
-          </div>
+                <div
+                  onChange={(e) => handleChange(e.target.id, e.target.value)}
+                >
+                  <FileUpload func={pulldata} />
+                </div>
               </div>
               <button onClick={onSubmit} class="btn btn-warning">
                 Submit
@@ -121,11 +121,10 @@ const EditProduct = () => {
               </button>
             </form>
           </div>
-          
-            </div>  
+        </div>
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default EditProduct
+export default EditProduct;

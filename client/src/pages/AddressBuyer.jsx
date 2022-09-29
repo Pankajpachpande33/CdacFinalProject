@@ -1,41 +1,55 @@
-import axios from 'axios';
-import React, { useState } from 'react'
-import './addressBuyer.css'
+import axios from "axios";
+import React, { useState } from "react";
+import "./addressBuyer.css";
 
 const AddressBuyer = () => {
+  const [address, setAddress] = useState({});
 
-    const [address, setAddress]=useState({});
-
-//   const [subCategory, setSubCategory]=useState({});
+  //   const [subCategory, setSubCategory]=useState({});
 
   const handleChange = (fieldName, fieldValue) => {
-    setAddress(prev => ({ ...prev, [fieldName]: fieldValue }));
-  }
+    setAddress((prev) => ({ ...prev, [fieldName]: fieldValue }));
+  };
 
-//   const handleChangeSub = (fieldName, fieldValue) => {
-//     setSubCategory(prev => ({ ...prev, [fieldName]: fieldValue ,status:true}));
-//   }
+  //   const handleChangeSub = (fieldName, fieldValue) => {
+  //     setSubCategory(prev => ({ ...prev, [fieldName]: fieldValue ,status:true}));
+  //   }
 
-    const onSubmit = async e => {   
-      e.preventDefault();
-      console.log(address)
-      alert(address.addressStreet +"\n " +address.addressCity +"\n "+address.addressState +"\n "+ address.addressCountry +"\n "+address.addressZip+"\n "+address.userId + "\nsuccessfully Added Your Address");
-       const res = await axios.post('http://127.0.0.1:9999/address', address)
-    }
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    console.log(address);
+    alert(
+      address.addressStreet +
+        "\n " +
+        address.addressCity +
+        "\n " +
+        address.addressState +
+        "\n " +
+        address.addressCountry +
+        "\n " +
+        address.addressZip +
+        "\n " +
+        address.userId +
+        "\nsuccessfully Added Your Address"
+    );
+    const res = await axios.post("http://127.0.0.1:8080/address", address);
+  };
 
-    // const onSubmitSub = async e => {   
-    //   e.preventDefault();
-    //   console.log(subCategory)
-    //    const res = await axios.post('http://127.0.0.1:9999/subCategory', subCategory)
-    // }
-
+  // const onSubmitSub = async e => {
+  //   e.preventDefault();
+  //   console.log(subCategory)
+  //    const res = await axios.post('http://127.0.0.1:9999/subCategory', subCategory)
+  // }
 
   return (
     <div>
       <div className="w-auto p-3 gradient">
-        <div class="card c2 container margin-top addressDiv"><br/>
-          <h1 className="t1">Address Details</h1><hr/><br/>
-          <form >
+        <div class="card c2 container margin-top addressDiv">
+          <br />
+          <h1 className="t1">Address Details</h1>
+          <hr />
+          <br />
+          <form>
             <div class="form-group">
               <label for="addressStreet">Street Name</label>
               <input
@@ -109,16 +123,22 @@ const AddressBuyer = () => {
               />
             </div>
             {/* <button onClick={onSubmit} class="btn btn-warning">Continue</button>&nbsp;&nbsp;
-             */}<br/>
-             <button onClick={onSubmit} class="btn btn-warning">Continue</button>&nbsp;&nbsp;
+             */}
+            <br />
+            <button onClick={onSubmit} class="btn btn-warning">
+              Continue
+            </button>
+            &nbsp;&nbsp;
             <button class="btn btn-warning" type="reset" value="Reset">
               Reset
             </button>
           </form>
-        </div><br/><br/>
+        </div>
+        <br />
+        <br />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AddressBuyer
+export default AddressBuyer;

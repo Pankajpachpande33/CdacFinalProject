@@ -5,16 +5,14 @@ import { AppContext } from "../context/AppContext";
 import { getCategory } from "../action/categoryActions";
 import { useNavigate } from "react-router-dom";
 
-
 const AddCategory = () => {
   const [category, setCategory] = useState({});
 
   const [subCategory, setSubCategory] = useState({});
 
-
   const { entity, loading, dispatch } = useContext(AppContext);
 
-  const [formData, setFormData] = useState({ categoryName: '', status: '' });
+  const [formData, setFormData] = useState({ categoryName: "", status: "" });
   const [isUpdate, setIsUpdate] = useState(false);
 
   useEffect(() => {
@@ -22,11 +20,11 @@ const AddCategory = () => {
   }, []);
 
   const loadCategory = async () => {
-    await getCategory('category',dispatch)
+    await getCategory("category", dispatch);
   };
 
-  const navigate=useNavigate();
-  
+  const navigate = useNavigate();
+
   const handleChange = (fieldName, fieldValue) => {
     setCategory((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
   };
@@ -42,18 +40,18 @@ const AddCategory = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(category);
-    const res = await axios.post("http://127.0.0.1:9999/category", category);
+    const res = await axios.post("http://127.0.0.1:8080/category", category);
   };
 
   const onSubmitSub = async (e) => {
     e.preventDefault();
     console.log(subCategory);
     const res = await axios.post(
-      "http://127.0.0.1:9999/subCategory",
+      "http://127.0.0.1:8080/subCategory",
       subCategory
     );
-    if(res){
-        navigate("/addProduct");
+    if (res) {
+      navigate("/addProduct");
     }
   };
 
@@ -130,14 +128,18 @@ const AddCategory = () => {
               <div>
                 <label for="categoryId">Choose Category : </label>
 
-                <select name="categoryId"
+                <select
+                  name="categoryId"
                   id="categoryId"
-                  onChange={(e) => handleChangeSub(e.target.id, e.target.value)}>
+                  onChange={(e) => handleChangeSub(e.target.id, e.target.value)}
+                >
                   <option>Select</option>
-                  {entity.category.length>0 &&
-                  entity.category.map((item,index)=>(
-                    <option value={item.categoryId}>{item.categoryName}</option>
-                  ))}  
+                  {entity.category.length > 0 &&
+                    entity.category.map((item, index) => (
+                      <option value={item.categoryId}>
+                        {item.categoryName}
+                      </option>
+                    ))}
                   {/* <option value="volvo">Volvo</option>
                   <option value="saab">Saab</option>
                   <option value="mercedes">Mercedes</option>

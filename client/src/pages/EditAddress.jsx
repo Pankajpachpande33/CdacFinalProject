@@ -1,39 +1,34 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from 'react-router-dom';
-
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const EditAddress = () => {
+  const [address, setAddress] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const [address, setAddress] = useState({});
-    const location = useLocation()
-    const navigate = useNavigate()
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-       
-        const res = await axios.put(`http://127.0.0.1:9999/address/${location.state.addressId}`, address);
-        navigate("/displayAddress")
-      };
+    const res = await axios.put(
+      `http://127.0.0.1:8080/address/${location.state.addressId}`,
+      address
+    );
+    navigate("/displayAddress");
+  };
 
-      const handleChange = (fieldName, fieldValue) => {
-        setAddress((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
-      };
+  const handleChange = (fieldName, fieldValue) => {
+    setAddress((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
+  };
 
-      useEffect(() => {
-        setAddress(location.state);
-        
-    },[location.state])
-    
-    console.log(location.state)
-    
- 
-    return (
+  useEffect(() => {
+    setAddress(location.state);
+  }, [location.state]);
 
+  console.log(location.state);
 
-    
-      <div>
+  return (
+    <div>
       <div className="w-auto p-3 gradient">
         <div class="card c2 container margin-top">
           <div>
@@ -49,10 +44,10 @@ export const EditAddress = () => {
                   class="form-control"
                   name="addressStreet"
                   id="addressStreet"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Address Street"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <br />
@@ -63,10 +58,10 @@ export const EditAddress = () => {
                   class="form-control"
                   name="addressCity"
                   id="addressCity"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Address City"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
@@ -76,10 +71,10 @@ export const EditAddress = () => {
                   class="form-control"
                   name="addressState"
                   id="addressState"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Address State"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
@@ -89,10 +84,10 @@ export const EditAddress = () => {
                   class="form-control"
                   name="addressCountry"
                   id="addressCountry"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Address Country"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
@@ -102,10 +97,10 @@ export const EditAddress = () => {
                   class="form-control"
                   name="addressZip"
                   id="addressZip"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Address Zip"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <div class="form-group">
@@ -115,10 +110,10 @@ export const EditAddress = () => {
                   class="form-control"
                   name="userId"
                   id="userId"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="User Id"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <button onClick={onSubmit} class="btn btn-warning">
@@ -130,10 +125,8 @@ export const EditAddress = () => {
               </button>
             </form>
           </div>
-          
-            </div>  
+        </div>
+      </div>
     </div>
-    </div>
-  )
-}
-
+  );
+};

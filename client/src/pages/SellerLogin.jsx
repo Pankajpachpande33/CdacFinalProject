@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LOAD_CURRENTUSER_SUCCESS } from "../constants/ApplicationTypes";
 import { AppContext } from "../context/AppContext";
-import './login.css'
+import "./login.css";
 
 const SellerLogin = () => {
   const [user, setUser] = useState({});
@@ -17,12 +17,16 @@ const SellerLogin = () => {
     e.preventDefault();
     console.log(user);
     try {
-      const res = await axios.post("http://127.0.0.1:9999/sellerLogin", user);
-      if (res.data>0) {
+      const res = await axios.post("http://127.0.0.1:8080/sellerLogin", user);
+      if (res.data > 0) {
         dispatch({ type: LOAD_CURRENTUSER_SUCCESS, payload: user.username });
         alert(user.username + "  " + " Login Successfull !");
+        localStorage.setItem("userId", res.data);
 
         navigate("/sellerHome");
+      }
+      if (res.data === 0) {
+        alert("Wrong username and password");
       }
     } catch (error) {
       alert(" Wrong UserName And Password  ");
@@ -39,20 +43,20 @@ const SellerLogin = () => {
         <h1 className="txt34"> Seller Account</h1>
         <hr />
         <br />
-        <form  class="was-validated">
+        <form class="was-validated">
           <div class="form-group">
             <label for="username">User Name</label>
             <input
-                type="email"
-                class="form-control"
-                id="username"
-                placeholder="User name"
-                name="username"
-                onChange={(e) => handleChange(e.target.id, e.target.value)}
-                required
-              />
+              type="email"
+              class="form-control"
+              id="username"
+              placeholder="User name"
+              name="username"
+              onChange={(e) => handleChange(e.target.id, e.target.value)}
+              required
+            />
             <div class="form-group">
-            <label for="password">Password</label>
+              <label for="password">Password</label>
               <input
                 type="password"
                 class="form-control"
@@ -90,9 +94,12 @@ const SellerLogin = () => {
           </div>
         </form>
 
-        <form >
+        <form>
           <div class="form-group">
-            <button onClick={() => gotoSellerRegistration()} class="btn btn-light">
+            <button
+              onClick={() => gotoSellerRegistration()}
+              class="btn btn-light"
+            >
               Create your LOGO Craft account
             </button>
           </div>

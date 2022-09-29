@@ -1,7 +1,11 @@
 package cdac.ecom.seller.controller;
 
+import cdac.ecom.seller.entity.UserMaster;
 import cdac.ecom.seller.model.LoginVM;
-import cdac.ecom.seller.repository.service.LoginService;
+import cdac.ecom.seller.model.SellerVM;
+import cdac.ecom.seller.repository.UserRepo;
+import cdac.ecom.seller.service.LoginService;
+import cdac.ecom.seller.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;

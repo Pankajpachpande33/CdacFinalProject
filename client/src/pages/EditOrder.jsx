@@ -1,41 +1,36 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from 'react-router-dom';
-
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const EditOrder = () => {
+  const [order, setOrder] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const [order, setOrder] = useState({});
-    const location = useLocation()
-    const navigate = useNavigate()
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
+    console.log(order);
 
-        console.log(order);
-       
-        const res = await axios.put(`http://127.0.0.1:9999/order/${location.state.orderId}`, order);
-        navigate("/displayOrder")
-      };
+    const res = await axios.put(
+      `http://127.0.0.1:8080/order/${location.state.orderId}`,
+      order
+    );
+    navigate("/displayOrder");
+  };
 
-      const handleChange = (fieldName, fieldValue) => {
-        setOrder((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
-      };
+  const handleChange = (fieldName, fieldValue) => {
+    setOrder((prev) => ({ ...prev, [fieldName]: fieldValue, status: true }));
+  };
 
-      useEffect(() => {
-        setOrder(location.state);
-        
-    },[location.state])
-    
-    console.log(location.state)
-    
- 
-    return (
+  useEffect(() => {
+    setOrder(location.state);
+  }, [location.state]);
 
+  console.log(location.state);
 
-    
-      <div>
+  return (
+    <div>
       <div className="w-auto p-3 gradient">
         <div class="card c2 container margin-top">
           <div>
@@ -51,10 +46,10 @@ export const EditOrder = () => {
                   class="form-control"
                   name="orderDate"
                   id="orderDate"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Order Date"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <br />
@@ -65,10 +60,10 @@ export const EditOrder = () => {
                   class="form-control"
                   name="orderQuantity"
                   id="orderQuantity"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Order Quantity"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <br />
@@ -79,10 +74,10 @@ export const EditOrder = () => {
                   class="form-control"
                   name="productName"
                   id="productName"
-                 // value={location.state.categoryName}
+                  // value={location.state.categoryName}
                   placeholder="Product Name"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
-                   required
+                  required
                 />
               </div>
               <br />
@@ -95,10 +90,8 @@ export const EditOrder = () => {
               </button>
             </form>
           </div>
-          
-            </div>  
+        </div>
+      </div>
     </div>
-    </div>
-  )
-}
-
+  );
+};

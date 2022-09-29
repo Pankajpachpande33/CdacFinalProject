@@ -1,58 +1,70 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import './registration.css'
-import axios from 'axios';
-import { AlertContainer, alert } from 'react-custom-alert';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "./registration.css";
+import axios from "axios";
+import { AlertContainer, alert } from "react-custom-alert";
 import { getProduct } from "../action/productAction";
 import { AppContext } from "../context/AppContext";
 
-
 function MyOrders() {
+  const buyerId = localStorage.getItem("userId");
 
   const [order, setOrder] = useState({});
 
-  const { entity, loading, dispatch ,pageId} = useContext(AppContext);
+  const { entity, loading, dispatch, currentUser } = useContext(AppContext);
 
-  const location=useLocation();
+  const location = useLocation();
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadProduct();
   }, []);
 
   const loadProduct = async () => {
-    await getProduct('product',dispatch)
+    await getProduct("product", dispatch);
   };
 
   const handleChange = (fieldName, fieldValue) => {
-    setOrder((prev) => ({ ...prev, [fieldName]: fieldValue, productId: location.state.productId }));
+    setOrder((prev) => ({
+      ...prev,
+      [fieldName]: fieldValue,
+      productId: location.state.productId,
+      userId: buyerId,
+    }));
   };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(order);
-    try{
-       const res = await axios.post('http://127.0.0.1:9999/order', order)
-       if(res.status===200){
-       alert("Your Order is Placed !!!")
-       navigate("/");
-       }
-   }catch(error){
-     alert("Something went wrong.. try again !")
-   }
+    try {
+      const res = await axios.post("http://127.0.0.1:8080/order", order);
+      if (res.status === 200) {
+        alert("Your Order is Placed !!!");
+        navigate("/");
+      }
+    } catch (error) {
+      alert("Something went wrong.. try again !");
+    }
   };
 
+  console.log(currentUser);
+
+  console.log(currentUser);
+
   return (
-    <div className='w-auto p-3'>
-      
+    <div className="w-auto p-3">
+      {currentUser && "Hello"}
       <div className="w-auto p-3 gradient">
         <div class="card c2 container margin-top">
           <br />
           <h1 className="t1">Order Form</h1>
           <hr />
-          <h2 className="text-center font-weight-bold">{location.state.productName}</h2>
+          <h2 className="text-center font-weight-bold">
+            {location.state.productName}
+          </h2>
           <br />
-          <form  class="was-validated">
+          <form class="was-validated">
             <div class="form-group">
               <label for="orderDate">Order date</label>
               <input
@@ -110,17 +122,21 @@ function MyOrders() {
             <div class="form-group">
               <label for="userId">user Id</label>
               <input
-                type="tel"
+                type="hidden"
                 class="form-control"
                 id="userId"
                 placeholder="Enter User Id"
                 name="userId"
+                value={buyerId}
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
                 required
               />
             </div>
             <br />
-            <button onClick={onSubmit} class="btn btn-warning">Continue</button>&nbsp;&nbsp;
+            <button onClick={onSubmit} class="btn btn-warning">
+              Continue
+            </button>
+            &nbsp;&nbsp;
             <button class="btn btn-warning" type="reset" value="Reset">
               Reset
             </button>
@@ -128,7 +144,7 @@ function MyOrders() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default MyOrders
+export default MyOrders;
