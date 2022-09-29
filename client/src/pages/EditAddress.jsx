@@ -11,7 +11,7 @@ export const EditAddress = () => {
     e.preventDefault();
 
     const res = await axios.put(
-      `http://127.0.0.1:8080/address/${location.state.addressId}`,
+      `http://127.0.0.1:9999/address/${location.state.addressId}`,
       address
     );
     navigate("/displayAddress");

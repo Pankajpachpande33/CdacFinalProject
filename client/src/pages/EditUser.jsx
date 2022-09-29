@@ -11,7 +11,7 @@ export const EditUser = () => {
     e.preventDefault();
 
     const res = await axios.put(
-      `http://127.0.0.1:8080/user/${location.state.userId}`,
+      `http://127.0.0.1:9999/user/${location.state.userId}`,
       user
     );
     navigate("/displayCategory");

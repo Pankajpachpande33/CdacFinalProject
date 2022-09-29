@@ -22,7 +22,7 @@ const FileUpload = (props) => {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8080/imageUpload",
+        "http://127.0.0.1:9999/imageUpload",
         formData,
         {
           headers: {

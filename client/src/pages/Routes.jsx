@@ -145,9 +145,9 @@ const AppRoutes = () => {
           <Route
             path="displayAllSeller"
             element={
-              <RouteComponentLoginPage>
+              <RouterSellerComponent>
                 <GetAllSeller />
-              </RouteComponentLoginPage>
+              </RouterSellerComponent>
             }
           />
           <Route

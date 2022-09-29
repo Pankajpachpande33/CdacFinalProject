@@ -14,7 +14,7 @@ export const EditSubCategory = () => {
     console.log(subCategory);
 
     const res = await axios.put(
-      `http://127.0.0.1:8080/subCategory/${location.state.subCategoryId}`,
+      `http://127.0.0.1:9999/subCategory/${location.state.subCategoryId}`,
       subCategory
     );
     // const res1 = await axios.put(`http://127.0.0.1:9999/Category/${location.state.categoryId}`, category);

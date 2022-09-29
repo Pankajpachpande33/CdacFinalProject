@@ -11,7 +11,7 @@ const EditProduct = () => {
     e.preventDefault();
 
     const res = await axios.put(
-      `http://127.0.0.1:8080/product/${location.state.productId}`,
+      `http://127.0.0.1:9999/product/${location.state.productId}`,
       product
     );
     navigate("/displaySubCategory");

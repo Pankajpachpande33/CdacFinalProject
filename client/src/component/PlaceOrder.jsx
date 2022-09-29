@@ -4,7 +4,8 @@ import Sidebar from '../pages/Sidebar'
 const PlaceOrder = () => {
     return (
         <div>
-            PlaceOrder</div>
+            PlaceOrder
+        </div>
     )
 }
 

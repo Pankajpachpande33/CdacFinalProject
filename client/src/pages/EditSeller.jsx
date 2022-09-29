@@ -13,7 +13,7 @@ export const EditSeller = () => {
     console.log(seller);
 
     const res = await axios.put(
-      `http://127.0.0.1:8080/seller/${location.state.sellerId}`,
+      `http://127.0.0.1:9999/seller/${location.state.sellerId}`,
       seller
     );
     navigate("/displaySeller");

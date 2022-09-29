@@ -15,7 +15,7 @@ const RegistrationPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
-    const res = await axios.post("http://127.0.0.1:8080/user", user);
+    const res = await axios.post("http://127.0.0.1:9999/user", user);
 
     if (res.data === 200) {
       navigation("/login");

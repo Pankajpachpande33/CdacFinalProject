@@ -101,7 +101,7 @@ function Header() {
                 </Link>
               </div>
               <div class="dropdown-item">
-                <button onClick={logout}>Logout</button>
+                <button className="btn btn-secondary" onClick={logout}>Logout</button>
               </div>
             </div>
           </div>

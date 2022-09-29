@@ -13,6 +13,8 @@ const AddProduct = () => {
 
   const { entity, loading, dispatch } = useContext(AppContext);
 
+  const currentSellerId = localStorage.getItem("userId");
+
   const [formData, setFormData] = useState({ categoryName: "", status: "" });
   const [isUpdate, setIsUpdate] = useState(false);
 
@@ -41,6 +43,7 @@ const AddProduct = () => {
     setProduct((prev) => ({
       ...prev,
       [fieldName]: fieldValue,
+      sellerId: currentSellerId,
       imageUploadPath: imagePath,
     }));
     // console.log(fieldValue);
@@ -49,10 +52,10 @@ const AddProduct = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(product);
-    const res = await axios.post("http://127.0.0.1:8080/product", product);
+    const res = await axios.post("http://127.0.0.1:9999/product", product);
     console.log("This is Response " + res);
     if (res) {
-      navigate("/displayProduct");
+      navigate("/sellerHome");
       alert(
         "\nProduct Name : " +
           product.productName +
@@ -97,7 +100,6 @@ const AddProduct = () => {
             </div>
             {/* <div>
                 <label for="categoryId">Choose Category Name : </label>
-
                 <select name="categoryId"
                   id="categoryId"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}>
@@ -127,12 +129,13 @@ const AddProduct = () => {
             </div>
             <br />
             <div class="form-group">
-              <label for="sellerId">Product Seller Id</label>
+              <label for="sellerId"></label>
               <input
-                type="tel"
+                type="hidden"
                 class="form-control"
                 id="sellerId"
                 placeholder="Product Seller Id"
+                value={currentSellerId}
                 name="sellerId"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
                 required

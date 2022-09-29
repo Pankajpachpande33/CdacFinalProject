@@ -13,7 +13,7 @@ export const EditCategory = () => {
     console.log(category);
 
     const res = await axios.put(
-      `http://127.0.0.1:8080/category/${location.state.categoryId}`,
+      `http://127.0.0.1:9999/category/${location.state.categoryId}`,
       category
     );
     navigate("/displayCategory");

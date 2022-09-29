@@ -6,7 +6,7 @@ import axios from "axios";
 const SellerRegistration = () => {
   const [user, setUser] = useState({});
 
-  const navigate = useNavigate();
+  const navigation = useNavigate();
 
   const handleChange = (fieldName, fieldValue) => {
     setUser((prev) => ({ ...prev, [fieldName]: fieldValue }));
@@ -14,14 +14,14 @@ const SellerRegistration = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
-    navigate("/sellerLogin");
-    alert(
-      user.sellerFirstName +
-        " " +
-        user.sellerLastName +
-        "\nsuccessfully Register"
-    );
-    const res = await axios.post("http://127.0.0.1:8080/seller", user);
+    const res = await axios.post("http://127.0.0.1:9999/seller", user);
+
+    if (res.data === 200) {
+      navigation("/sellerlogin");
+    }
+    if (res.data === 1) {
+      alert("both password shold match");
+    }
   };
 
   return (

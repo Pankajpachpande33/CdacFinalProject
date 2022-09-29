@@ -8,7 +8,7 @@ import java.util.List;
 public interface SellerService {
 
     public List<SellerMaster> getAllSeller();
-    public String saveSeller(SellerVM sellerVM);
+    public int saveSeller(SellerVM sellerVM);
 
     public SellerMaster getSellerById(Long sellerId);
 

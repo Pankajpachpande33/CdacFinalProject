@@ -40,14 +40,14 @@ const AddCategory = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(category);
-    const res = await axios.post("http://127.0.0.1:8080/category", category);
+    const res = await axios.post("http://127.0.0.1:9999/category", category);
   };
 
   const onSubmitSub = async (e) => {
     e.preventDefault();
     console.log(subCategory);
     const res = await axios.post(
-      "http://127.0.0.1:8080/subCategory",
+      "http://127.0.0.1:9999/subCategory",
       subCategory
     );
     if (res) {

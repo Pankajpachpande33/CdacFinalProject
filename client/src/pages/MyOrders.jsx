@@ -38,7 +38,7 @@ function MyOrders() {
     e.preventDefault();
     console.log(order);
     try {
-      const res = await axios.post("http://127.0.0.1:8080/order", order);
+      const res = await axios.post("http://127.0.0.1:9999/order", order);
       if (res.status === 200) {
         alert("Your Order is Placed !!!");
         navigate("/");
@@ -120,7 +120,7 @@ function MyOrders() {
               </div> */}
             </div>
             <div class="form-group">
-              <label for="userId">user Id</label>
+              <label for="userId"></label>
               <input
                 type="hidden"
                 class="form-control"
