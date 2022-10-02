@@ -1,27 +1,45 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./registration.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
+import { getUser } from "../action/userAction";
 
 const RegistrationPage = () => {
   const [user, setUser] = useState({});
-
+  const { entity, loading, dispatch } = useContext(AppContext);
   const navigation = useNavigate();
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  const loadUser = async () => {
+    await getUser("user", dispatch);
+  };
 
   const handleChange = (fieldName, fieldValue) => {
     setUser((prev) => ({ ...prev, [fieldName]: fieldValue }));
   };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
-    const res = await axios.post("http://127.0.0.1:9999/user", user);
-
-    if (res.data === 200) {
-      navigation("/login");
-    }
-    if (res.data === 1) {
-      alert("both password shold match");
+    const userCurrentEmail = entity.user.filter(
+      (id) => id.userEmail === user.userEmail
+    );
+    if (userCurrentEmail.length === 0) {
+      const res = await axios.post("http://127.0.0.1:9999/user", user);
+      if (res.data === 200) {
+        alert("SuccessFully Registered")
+        navigation("/login");
+      }
+      if (res.data === 1) {
+        alert("Wrong" + "\nboth password should match");
+      }
+    } else {
+      alert("Email Already Registered");
     }
   };
 

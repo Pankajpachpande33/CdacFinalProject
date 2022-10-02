@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./registration.css";
 import axios from "axios";
+import { AppContext } from "../context/AppContext";
+import { getSeller } from "../action/sellerAction";
 
 const SellerRegistration = () => {
   const [user, setUser] = useState({});
-
+  const { entity, loading, dispatch } = useContext(AppContext);
   const navigation = useNavigate();
+
+  useEffect(() => {
+    loadSeller();
+  }, []);
+
+  const loadSeller = async () => {
+    await getSeller("seller", dispatch);
+  };
+
 
   const handleChange = (fieldName, fieldValue) => {
     setUser((prev) => ({ ...prev, [fieldName]: fieldValue }));
@@ -14,9 +25,11 @@ const SellerRegistration = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
-    
+    const sellerCurrentEmail = entity.seller.filter(
+      (id) => id.sellerEmail === user.sellerEmail
+    );
+    if (sellerCurrentEmail.length === 0) {
     const res = await axios.post("http://127.0.0.1:9999/seller", user);
-
     if (res.data === 200) {
       alert(
         user.sellerFirstName +
@@ -33,6 +46,10 @@ const SellerRegistration = () => {
     if (res.data === 1) {
       alert("Wrong"+"\nboth password should match");
     }
+    }else{
+        alert("Email Already Registered")
+    }
+    
   };
 
   return (
