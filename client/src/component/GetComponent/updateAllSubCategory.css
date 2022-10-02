@@ -1,0 +1,23 @@
+.cardSub12 {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-gap: 20px;
+    margin-bottom: 100px;
+}
+
+.cardSub25 {
+    /* height: 520px; */
+    display: grid;
+    grid-template-rows: max-content 200px 1fr;
+}
+
+.cardSub25 {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    
+}
+.subCat22{
+    margin-top: 10px;
+}
