@@ -5,6 +5,7 @@ import { LOAD_CURRENTUSER_SUCCESS } from "../constants/ApplicationTypes";
 import { AppContext } from "../context/AppContext";
 
 const Login = () => {
+  const getServiceAPIURL = () => `${process.env.REACT_APP_API_URL}`;
   const [user, setUser] = useState({});
   const { dispatch, currentUser } = useContext(AppContext);
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Login = () => {
     e.preventDefault();
     console.log(user);
     try {
-      const res = await axios.post("http://127.0.0.1:9999/userLogin", user);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}userLogin`, user);
       console.log(res);
 
       if (res.data > 0) {

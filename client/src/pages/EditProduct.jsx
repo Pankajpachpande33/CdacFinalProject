@@ -6,6 +6,7 @@ import { getProduct } from "../action/productAction";
 import { AppContext } from "../context/AppContext";
 
 const EditProduct = () => {
+  const getServiceAPIURL = () => `${process.env.REACT_APP_API_URL}`;
   const currentSellerId = localStorage.getItem("userId");
   const [product, setProduct] = useState({});
   const location = useLocation();
@@ -17,7 +18,7 @@ const EditProduct = () => {
     e.preventDefault();
 
     const res = await axios.put(
-      `http://127.0.0.1:9999/product/${location.state.productId}`,
+      `${process.env.REACT_APP_API_URL}product/${location.state.productId}`,
       product
     );
     navigate("/sellerHome");

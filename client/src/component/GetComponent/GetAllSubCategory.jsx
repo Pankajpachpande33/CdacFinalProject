@@ -35,7 +35,7 @@ const editItem = (id) => {
 
 console.log(FormData);
 const deleteItem = async (id) => {
-  const result = await axios.delete(`http://127.0.0.1:9999/subCategory/${id}`);
+  const result = await axios.delete(`${process.env.REACT_APP_API_URL}subCategory/${id}`);
   if (result) {
       console.log(result)
       loadSubCategory();

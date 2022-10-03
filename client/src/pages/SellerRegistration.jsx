@@ -29,7 +29,7 @@ const SellerRegistration = () => {
       (id) => id.sellerEmail === user.sellerEmail
     );
     if (sellerCurrentEmail.length === 0) {
-    const res = await axios.post("http://127.0.0.1:9999/seller", user);
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}seller`, user);
     if (res.data === 200) {
       alert(
         user.sellerFirstName +
@@ -49,7 +49,6 @@ const SellerRegistration = () => {
     }else{
         alert("Email Already Registered")
     }
-    
   };
 
   return (

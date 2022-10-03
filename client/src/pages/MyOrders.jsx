@@ -39,7 +39,7 @@ function MyOrders() {
     e.preventDefault();
         alert("Successfully")
         navigate("/displayAllOrder");
-        const res = await axios.post("http://127.0.0.1:9999/order", order);
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}order`, order);
       
   };
 

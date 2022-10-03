@@ -30,7 +30,7 @@ const RegistrationPage = () => {
       (id) => id.userEmail === user.userEmail
     );
     if (userCurrentEmail.length === 0) {
-      const res = await axios.post("http://127.0.0.1:9999/user", user);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}user`, user);
       if (res.data === 200) {
         alert("SuccessFully Registered")
         navigation("/login");
@@ -99,9 +99,7 @@ const RegistrationPage = () => {
                 name="userEmail"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
                 pattern="[a-zA-Z0-9]+@gmail.com" size="30"
-                
                 required
-                
               />
             </div>
             <div class="form-group">

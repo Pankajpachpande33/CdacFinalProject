@@ -17,7 +17,7 @@ const SellerLogin = () => {
     e.preventDefault();
     console.log(user);
     try {
-      const res = await axios.post("http://127.0.0.1:9999/sellerLogin", user);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}sellerLogin`, user);
       if (res.data > 0) {
         dispatch({ type: LOAD_CURRENTUSER_SUCCESS, payload: user.username });
         alert(user.username + "  " + " Login Successfull !");

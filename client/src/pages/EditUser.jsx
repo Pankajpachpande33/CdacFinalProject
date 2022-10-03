@@ -6,6 +6,7 @@ import { getUser } from "../action/userAction";
 import './edituser.css';
 
 export const EditUser = () => {
+  const getServiceAPIURL = () => `${process.env.REACT_APP_API_URL}`;
   const currentUserId = localStorage.getItem("userId");
 
   const { entity, loading, dispatch } = useContext(AppContext);
@@ -32,7 +33,7 @@ export const EditUser = () => {
     e.preventDefault();
 
     const res = await axios.put(
-      `http://127.0.0.1:9999/user/${currentUser[0].userId}`,
+      `${process.env.REACT_APP_API_URL}user/${currentUser[0].userId}`,
       formData
     );
     if(res) {

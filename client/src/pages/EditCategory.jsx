@@ -3,6 +3,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const EditCategory = () => {
+  const getServiceAPIURL = () => `${process.env.REACT_APP_API_URL}`;
   const [category, setCategory] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export const EditCategory = () => {
     console.log(category);
 
     const res = await axios.put(
-      `http://127.0.0.1:9999/category/${location.state.categoryId}`,
+      `${process.env.REACT_APP_API_URL}category/${location.state.categoryId}`,
       category
     );
     navigate("/displayAllCategory");

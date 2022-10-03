@@ -27,7 +27,7 @@ const DisplayCategory = () => {
             //     const response = await axiosapi.getAPI(url);
             //     dispatch({ type: LOAD_CATEGORY_SUCCESS, payload: response.data });
             // }, 2000)
-            const response = await axios.get('http://localhost:9999/category')
+            const response = await axios.get('${process.env.REACT_APP_API_URL}category')
 
             
             

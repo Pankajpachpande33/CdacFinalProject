@@ -50,7 +50,7 @@ const DisplayProductDetails = () => {
   const loadProduct = async () => {
     try {
       const result = await axios.get(
-        `http://127.0.0.1:9999/product/${location.state.pid}`
+        `${process.env.REACT_APP_API_URL}product/${location.state.pid}`
       );
       // if(result.data.length > 0)
       // {result.data.map((item, index) => (

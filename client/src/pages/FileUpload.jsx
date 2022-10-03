@@ -4,6 +4,7 @@ import Progress from "./Progress";
 import axios from "axios";
 
 const FileUpload = (props) => {
+  const getServiceAPIURL = () => `${process.env.REACT_APP_API_URL}`;
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("Choose File");
   const [uploadedFile, setUploadedFile] = useState({});
@@ -22,7 +23,7 @@ const FileUpload = (props) => {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:9999/imageUpload",
+        `${process.env.REACT_APP_API_URL}imageUpload`,
         formData,
         {
           headers: {

@@ -50,7 +50,7 @@ const GetAllOrderForSeller = () => {
       userId:currentorder[0].userMaster.userId,orderStatus:"dispatch"})
     console.log(currentorder)
     try {
-      const result = await axios.put(`http://127.0.0.1:9999/order/${id}`,order);
+      const result = await axios.put(`${process.env.REACT_APP_API_URL}order/${id}`,order);
     if (result) {
      console.log(result);
      loadOrder();

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const EditSubCategory = () => {
+  const getServiceAPIURL = () => `${process.env.REACT_APP_API_URL}`;
   const [subCategory, setSubCategory] = useState({});
   // const [category, setCategory] = useState({});
   const location = useLocation();
@@ -14,7 +15,7 @@ export const EditSubCategory = () => {
     console.log(subCategory);
 
     const res = await axios.put(
-      `http://127.0.0.1:9999/subCategory/${location.state.subCategoryId}`,
+      `${process.env.REACT_APP_API_URL}subCategory/${location.state.subCategoryId}`,
       subCategory
     );
     // const res1 = await axios.put(`http://127.0.0.1:9999/Category/${location.state.categoryId}`, category);

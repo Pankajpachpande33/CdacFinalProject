@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./addressBuyer.css";
 
 const AddressBuyer = () => {
+  const getServiceAPIURL = () => `${process.env.REACT_APP_API_URL}`;
   const buyerId = localStorage.getItem("userId");
   const [address, setAddress] = useState({});
 
@@ -36,7 +37,7 @@ const AddressBuyer = () => {
         address.userId +
         "\nsuccessfully Added Your Address"
     );
-    const res = await axios.post("http://127.0.0.1:9999/address", address);
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}address`, address);
 
     navigate("/displayAllAddress");
   };

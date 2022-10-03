@@ -54,7 +54,7 @@ const DisplaySellerProductDetails = () => {
 }
 console.log(formData);
 const deleteItem = async (id) => {
-  const result = await axios.delete(`http://127.0.0.1:9999/product/${currentProduct.productId}`);
+  const result = await axios.delete(`${process.env.REACT_APP_API_URL}product/${currentProduct.productId}`);
   if (result) {
     alert("Product Deleted Successfully");
     navigate("/sellerHome");
@@ -69,7 +69,7 @@ const deleteItem = async (id) => {
   const loadProduct = async () => {
     try {
       const result = await axios.get(
-        `http://127.0.0.1:9999/product/${location.state.pid}`
+        `${process.env.REACT_APP_API_URL}product/${location.state.pid}`
       );
 
       dispatch({ type: LOAD_SINGLE_PRODUCT_SUCCESS, payload: result.data });

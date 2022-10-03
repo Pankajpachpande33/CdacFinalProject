@@ -8,6 +8,7 @@ import { getSubCategory } from "../action/subcategoryAction";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
+  const getServiceAPIURL = (url) => `${process.env.REACT_APP_API_URL}`;
   const currentSellerId = localStorage.getItem("userId");
   const [product, setProduct] = useState({});
   const [imagePath, setImagePath] = useState({});
@@ -51,7 +52,7 @@ const AddProduct = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(product);
-    const res = await axios.post("http://127.0.0.1:9999/product", product);
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}product`, product);
     console.log("This is Response " + res);
     if (res) {
       navigate("/sellerHome");

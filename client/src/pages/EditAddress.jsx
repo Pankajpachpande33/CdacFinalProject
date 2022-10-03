@@ -3,6 +3,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const EditAddress = () => {
+  const getServiceAPIURL = () => `${process.env.REACT_APP_API_URL}`;
   const [address, setAddress] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export const EditAddress = () => {
     e.preventDefault();
 
     const res = await axios.put(
-      `http://127.0.0.1:9999/address/${location.state.addressId}`,
+      `${process.env.REACT_APP_API_URL}address/${location.state.addressId}`,
       address
     );
     navigate("/displayAllAddress");

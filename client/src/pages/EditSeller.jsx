@@ -5,6 +5,7 @@ import { AppContext } from "../context/AppContext";
 import { getSeller } from "../action/sellerAction";
 
 export const EditSeller = () => {
+  const getServiceAPIURL = () => `${process.env.REACT_APP_API_URL}`;
   const currentSellerId = localStorage.getItem("userId");
 
   const { entity, loading, dispatch } = useContext(AppContext);
@@ -34,7 +35,7 @@ export const EditSeller = () => {
     e.preventDefault();
 
     const res = await axios.put(
-      `http://127.0.0.1:9999/seller/${currentSeller[0].sellerId}`,
+      `${process.env.REACT_APP_API_URL}seller/${currentSeller[0].sellerId}`,
       formData
     );
     navigate("/displayAllSeller");
