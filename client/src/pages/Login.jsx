@@ -54,6 +54,7 @@ const Login = () => {
                 placeholder="User name"
                 name="username"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
+                pattern="[a-zA-Z0-9]+@gmail.com" size="30"
                 required
               />
             </div>
@@ -66,6 +67,7 @@ const Login = () => {
                 placeholder="Password"
                 name="password"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
+                maxLength="8"
                 required
               />
             </div>

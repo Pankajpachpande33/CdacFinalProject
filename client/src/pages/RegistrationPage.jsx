@@ -85,6 +85,7 @@ const RegistrationPage = () => {
                 placeholder="Mobile Number"
                 name="userMobile"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
+                maxlength="10"
                 required
               />
             </div>
@@ -97,7 +98,10 @@ const RegistrationPage = () => {
                 placeholder="Enter email"
                 name="userEmail"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
+                pattern="[a-zA-Z0-9]+@gmail.com" size="30"
+                
                 required
+                
               />
             </div>
             <div class="form-group">
@@ -109,6 +113,7 @@ const RegistrationPage = () => {
                 placeholder="Enter password"
                 name="userPassword"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
+                maxLength="8"
                 required
               />
             </div>
@@ -121,6 +126,7 @@ const RegistrationPage = () => {
                 placeholder="Enter Confirm password"
                 name="confirmPass"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
+                maxLength="8"
                 required
               />
             </div>

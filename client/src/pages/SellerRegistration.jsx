@@ -94,6 +94,7 @@ const SellerRegistration = () => {
                 placeholder="Mobile Number"
                 name="sellerMobileNumber"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
+                maxlength="10"
                 required
               />
             </div>
@@ -106,6 +107,7 @@ const SellerRegistration = () => {
                 placeholder="Enter email"
                 name="sellerEmail"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
+                pattern="[a-zA-Z0-9]+@gmail.com" size="30"
                 required
               />
             </div>
@@ -118,6 +120,7 @@ const SellerRegistration = () => {
                 placeholder="Enter password"
                 name="sellerPassword"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
+                maxLength="8"
                 required
               />
             </div>
@@ -130,6 +133,7 @@ const SellerRegistration = () => {
                 placeholder="Enter Confirm password"
                 name="confirmPass"
                 onChange={(e) => handleChange(e.target.id, e.target.value)}
+                maxLength="8"
                 required
               />
             </div>

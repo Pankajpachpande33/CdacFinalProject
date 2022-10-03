@@ -9,5 +9,4 @@ class EcomSellerAppApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

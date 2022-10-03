@@ -52,7 +52,7 @@ export const EditSeller = () => {
             <br />
             <h1 className="t1">Update Seller</h1>
             <hr />
-            <form>
+            <form class="was-validated">
               <div class="form-group">
                 <h5>old First Name : {currentSeller[0]?.sellerFirstName}</h5>
                 <label for="sellerFirstName">First Name</label>
@@ -93,6 +93,7 @@ export const EditSeller = () => {
                   // value={location.state.categoryName}
                   placeholder="Mobile Number"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
+                  maxLength="10"
                   required
                 />
               </div>
@@ -107,6 +108,7 @@ export const EditSeller = () => {
                   // value={location.state.categoryName}
                   placeholder="Email Id"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
+                  pattern="[a-zA-Z0-9]+@gmail.com" size="30"
                   required
                 />
               </div>

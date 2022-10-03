@@ -35,7 +35,10 @@ export const EditUser = () => {
       `http://127.0.0.1:9999/user/${currentUser[0].userId}`,
       formData
     );
-    navigate("/displayAllUser");
+    if(res) {
+      navigate("/displayAllUser");
+    }
+   
   };
   const currentUser=entity.user.filter((id)=>id.userId==currentUserId);
 
@@ -49,7 +52,7 @@ export const EditUser = () => {
             <br />
             <h1 className="t1">Update User</h1>
             <hr />
-            <form>
+            <form class="was-validated">
               <div class="form-group">
                 <h5>Old First Name : {currentUser[0]?.userFirstName}</h5>
                 <label for="userFirstName">First Name</label>
@@ -90,6 +93,7 @@ export const EditUser = () => {
                   // value={location.state.categoryName}
                   placeholder="Mobile Number"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
+                  maxLength="10"
                   required
                 />
               </div>
@@ -104,6 +108,7 @@ export const EditUser = () => {
                   // value={location.state.categoryName}
                   placeholder="Email Id"
                   onChange={(e) => handleChange(e.target.id, e.target.value)}
+                  pattern="[a-zA-Z0-9]+@gmail.com" size="30"
                   required
                 />
               </div>
